@@ -37,7 +37,7 @@ public class AdvinhaService {
         return itemId.map(advinhaMapper::map).orElse(null);
     }
 
-    public AdvinhaDTO atualizar(AdvinhaDTO advinhaDTO, Long id){
+    public AdvinhaDTO atualizar(Long id,AdvinhaDTO advinhaDTO){
         Optional<AdvinhaModel> item_existe = advinhaRepository.findById(id);
         if(item_existe.isPresent()){
             AdvinhaModel item_atualizado = advinhaMapper.map(advinhaDTO);
