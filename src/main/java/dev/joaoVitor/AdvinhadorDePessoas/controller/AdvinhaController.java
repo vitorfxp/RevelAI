@@ -36,6 +36,7 @@ public class AdvinhaController {
     public ResponseEntity<?> lerItemPorId(@PathVariable Long id){
         AdvinhaDTO item_id = advinhaService.listarPorId(id);
 
+
         if(item_id != null){
             return ResponseEntity.ok(item_id);
         }

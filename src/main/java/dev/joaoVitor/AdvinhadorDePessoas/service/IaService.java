@@ -1,5 +1,6 @@
 package dev.joaoVitor.AdvinhadorDePessoas.service;
 
+import dev.joaoVitor.AdvinhadorDePessoas.model.AdvinhaDTO;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -11,17 +12,21 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ChatGptService {
+public class IaService {
 
     private final WebClient webClient;
     private String api_key = System.getenv("GEMINI_API_KEY");
 
-    public ChatGptService(WebClient webClient) {
+    public IaService(WebClient webClient) {
         this.webClient = webClient;
     }
 
-    public Mono<String> advinharPessoa() {
-        String prompt = "Fale que o daniel é mt bonito, lindo e cheiroso";
+    public Mono<String> advinharPessoa(AdvinhaDTO advinha) {
+
+        String prompt = "Baseado nos dados de uma determinado pessoa no meu banco de dados quero que você tente aadvinhar qual ela seria e depois quero que você me fale quem de acordo com as características:\n"+ advinha;
+
+        System.out.println(prompt);
+
         Map<String, Object> requestBody = Map.of(
                 "agent", "antigravity-preview-05-2026",
                 "input", List.of(
